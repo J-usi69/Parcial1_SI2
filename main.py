@@ -13,6 +13,24 @@ from routes.usuario_routes import usuario_router
 from routes.rol_usuario_routes import rol_usuario_router
 from routes.notificacion_routes import notificacion_router
 from routes.notificacion_usuario_routes import notificacion_usuario_router
+from routes.onboarding_routes import onboarding_router
+
+# Importación de Routers Modulares (Bloque E — Operaciones Core)
+from routes.vehiculo_routes import vehiculo_router
+from routes.servicio_routes import servicio_router
+from routes.servicio_sucursal_routes import servicio_sucursal_router
+from routes.tecnico_routes import tecnico_router
+from routes.solicitud_routes import solicitud_router
+from routes.asignacion_routes import asignacion_router
+from routes.diagnostico_routes import diagnostico_router
+
+# Importación de Routers Modulares (Bloque F — Documental, Analítica y Comercial)
+from routes.archivo_routes import archivo_router
+from routes.clasificacion_incidente_routes import clasificacion_incidente_router
+from routes.recomendacion_sucursal_routes import recomendacion_sucursal_router
+from routes.metodo_pago_routes import metodo_pago_router
+from routes.pago_routes import pago_router
+from routes.comision_routes import comision_router
 
 app = FastAPI(
     title="Veltra API - Atención de Emergencias Vehiculares",
@@ -55,6 +73,26 @@ app.include_router(rol_usuario_router, prefix="/api/v1")
 # Avisos y Bandejas
 app.include_router(notificacion_router, prefix="/api/v1")
 app.include_router(notificacion_usuario_router, prefix="/api/v1")
+
+# Onboarding Público
+app.include_router(onboarding_router, prefix="/api/v1")
+
+# Bloque E — Operaciones Core
+app.include_router(vehiculo_router, prefix="/api/v1")
+app.include_router(servicio_router, prefix="/api/v1")
+app.include_router(servicio_sucursal_router, prefix="/api/v1")
+app.include_router(tecnico_router, prefix="/api/v1")
+app.include_router(solicitud_router, prefix="/api/v1")
+app.include_router(asignacion_router, prefix="/api/v1")
+app.include_router(diagnostico_router, prefix="/api/v1")
+
+# Bloque F — Documental, Analítica y Comercial
+app.include_router(archivo_router, prefix="/api/v1")
+app.include_router(clasificacion_incidente_router, prefix="/api/v1")
+app.include_router(recomendacion_sucursal_router, prefix="/api/v1")
+app.include_router(metodo_pago_router, prefix="/api/v1")
+app.include_router(pago_router, prefix="/api/v1")
+app.include_router(comision_router, prefix="/api/v1")
 
 # Observación:
 # Omitimos db.Base.metadata.create_all(bind=engine) deliberadamente.

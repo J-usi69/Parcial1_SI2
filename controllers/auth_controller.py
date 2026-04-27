@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime
 
 from schemas.auth import LoginRequest, Token
-from services.auth_service import AuthService, auth_service_dep
+from services.auth_service import AuthService, auth_service_dep, get_current_user
 from repositories.usuario_repository import UsuarioRepository
 from db import get_db
 
@@ -38,15 +38,10 @@ def login(
 
 @auth_controller.post("/logout")
 def logout(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
+    current_user = Depends(get_current_user),
     db: Session = Depends(get_db),
-    auth_svc: AuthService = Depends(auth_service_dep),
     repo: UsuarioRepository = Depends(get_user_repo)
 ):
     # Extrae el identitario, intercepta la Base y forja el evento en el Last-Con
-    payload = auth_svc.decode_access_token(credentials.credentials)
-    if payload and payload.get("sub"):
-        repo.update_last_con(db, int(payload.get("sub")), datetime.utcnow())
-        return {"message": "Sesión Cerrada. Desconexión temporal estampada con éxito."}
-        
-    raise HTTPException(status_code=401, detail="Token estropeado o nulo.")
+    repo.update_last_con(db, current_user.id, datetime.utcnow())
+    return {"message": "Sesión Cerrada. Desconexión temporal estampada con éxito."}

@@ -6,14 +6,24 @@ class EmpresaService:
     def __init__(self, repository: EmpresaRepository):
         self.repository = repository
 
-    def get_empresas(self, db: Session):
-        return self.repository.get_all(db)
+    def get_empresas(self, db: Session, current_user):
+        from models.empresa import Empresa
+        if current_user.is_staff:
+            return self.repository.get_all(db)
+        elif current_user.empresa_id:
+            return db.query(Empresa).filter(Empresa.id == current_user.empresa_id).all()
+        return []
 
-    def get_empresa(self, db: Session, empresa_id: int):
+    def get_empresa(self, db: Session, empresa_id: int, current_user):
+        self._validate_scope(current_user, empresa_id)
         empresa = self.repository.get_by_id(db, empresa_id)
         if not empresa:
             raise ValueError(f"Empresa con ID {empresa_id} no existe.")
         return empresa
+        
+    def _validate_scope(self, current_user, empresa_id):
+        if not current_user.is_staff and current_user.empresa_id != empresa_id:
+            raise PermissionError("Violación de Ámbito: Acceso denegado a esta empresa.")
 
     def create_empresa(self, db: Session, data: EmpresaCreate):
         existing = self.repository.get_by_nit(db, data.nit)
@@ -21,7 +31,8 @@ class EmpresaService:
             raise ValueError(f"Ya existe una empresa con ese NIT: '{data.nit}'")
         return self.repository.create(db, data)
 
-    def update_empresa(self, db: Session, empresa_id: int, data: EmpresaUpdate):
+    def update_empresa(self, db: Session, empresa_id: int, data: EmpresaUpdate, current_user):
+        self._validate_scope(current_user, empresa_id)
         empresa = self.repository.get_by_id(db, empresa_id)
         if not empresa:
             raise ValueError("La empresa especificada no existe.")
@@ -35,7 +46,8 @@ class EmpresaService:
         clean_update = data.model_dump(exclude_unset=True)
         return self.repository.update(db, empresa_id, clean_update)
 
-    def soft_delete_empresa(self, db: Session, empresa_id: int):
+    def soft_delete_empresa(self, db: Session, empresa_id: int, current_user):
+        self._validate_scope(current_user, empresa_id)
         empresa = self.repository.get_by_id(db, empresa_id)
         if not empresa:
             raise ValueError("Empresa no encontrada")

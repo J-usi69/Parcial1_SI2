@@ -24,6 +24,21 @@ from models.usuario import Usuario
 from models.rol_usuario import RolUsuario
 from models.notificacion import Notificacion
 from models.notificacion_usuario import NotificacionUsuario
+from models.vehiculo import Vehiculo
+from models.servicio import Servicio
+from models.servicio_sucursal import ServicioSucursal
+from models.tecnico import Tecnico
+from models.solicitud import Solicitud
+from models.asignacion import Asignacion
+from models.diagnostico import Diagnostico
+
+# Bloque F
+from models.archivo import Archivo
+from models.clasificacion_incidente import ClasificacionIncidente
+from models.recomendacion_sucursal import RecomendacionSucursal
+from models.metodo_pago import MetodoPago
+from models.pago import Pago
+from models.comision import Comision
 
 target_metadata = Base.metadata
 

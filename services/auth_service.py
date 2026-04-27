@@ -4,6 +4,8 @@ from fastapi import HTTPException, status, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import jwt
 from passlib.context import CryptContext
+from sqlalchemy.orm import Session
+from db import get_db
 
 SECRET_KEY = "Fase1_Auth_Secret_No_En_Prod"
 ALGORITHM = "HS256"
@@ -50,33 +52,45 @@ class AuthService:
 def auth_service_dep():
     return AuthService()
 
+def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+    db: Session = Depends(get_db),
+    auth_svc: AuthService = Depends(auth_service_dep)
+):
+    token = credentials.credentials
+    payload = auth_svc.decode_access_token(token)
+    if not payload:
+        raise HTTPException(status_code=401, detail="Token no decodificable o expirado.")
+        
+    user_id_str = payload.get("sub")
+    if not user_id_str:
+        raise HTTPException(status_code=401, detail="Token inválido (Sin Subject).")
+        
+    from models.usuario import Usuario
+    user = db.query(Usuario).filter(Usuario.id == int(user_id_str)).first()
+    
+    if not user:
+        raise HTTPException(status_code=401, detail="Usuario no encontrado.")
+        
+    if not user.is_active:
+        raise HTTPException(status_code=401, detail="El usuario está inactivo o bloqueado.")
+        
+    return user
+
 def require_permissions(required_permissions: list[str]):
     def permission_checker(
-        credentials: HTTPAuthorizationCredentials = Depends(security),
+        current_user = Depends(get_current_user),
+        db: Session = Depends(get_db),
         auth_svc: AuthService = Depends(auth_service_dep),
     ):
-        from db import SessionLocal
-        db = SessionLocal() # Conexión fugaz para verificar autorización
-        try:
-            token = credentials.credentials
-            payload = auth_svc.decode_access_token(token)
-            if not payload:
-                raise HTTPException(status_code=401, detail="Token no decodificable.")
-                
-            user_id = payload.get("sub")
-            if not user_id:
-                raise HTTPException(status_code=401, detail="Token invalido (Sin Subject).")
-                
-            efectivos = auth_svc.get_effective_permissions(db, int(user_id))
-            
-            for req in required_permissions:
-                if req not in efectivos:
-                    raise HTTPException(
-                        status_code=status.HTTP_403_FORBIDDEN, 
-                        detail=f"Acceso Denegado. Se te requiere el privilegio activo: {req}"
-                    )
-            return user_id
-        finally:
-            db.close()
-            
+        efectivos = auth_svc.get_effective_permissions(db, current_user.id)
+        
+        for req in required_permissions:
+            if req not in efectivos:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN, 
+                    detail=f"Acceso Denegado. Se requiere el permiso: {req}"
+                )
+        return current_user
+        
     return permission_checker
