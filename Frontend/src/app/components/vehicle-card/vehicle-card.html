@@ -1,0 +1,42 @@
+<article
+  class="w-[280px] shrink-0 glass-panel rounded-[2rem] p-4 ambient-shadow flex flex-col hover:-translate-y-1 transition-all duration-300 border-[0.5px] border-white/20"
+>
+  <div
+    class="relative h-32 w-full rounded-[1.5rem] overflow-hidden mb-4 bg-surface-container-lowest"
+  >
+    <img
+      [src]="data.imagen"
+      [alt]="data.nombre"
+      class="w-full h-full object-cover mix-blend-luminosity"
+    />
+
+    <div
+      class="absolute top-2 right-2 bg-surface/80 backdrop-blur-md border-[0.5px] border-brand-lime/30 px-2 py-1 rounded-full flex items-center gap-1.5 shadow-lg"
+    >
+      <div class="w-1.5 h-1.5 rounded-full bg-brand-lime animate-pulse"></div>
+      <span class="text-[9px] font-bold text-white tracking-wider">{{ data.estado }}</span>
+    </div>
+  </div>
+
+  <h3 class="text-lg font-bold text-white leading-snug mb-3">
+    {{ data.nombre }}
+  </h3>
+
+  <div class="flex flex-col gap-2 mb-4">
+    <div class="flex justify-between items-center">
+      <span
+        class="bg-surface-container-low border-[0.5px] border-outline-variant text-primary px-2 py-0.5 rounded-full text-[10px] font-mono font-bold"
+      >
+        {{ data.placa }}
+      </span>
+      <span class="text-on-surface-variant text-[11px] flex items-center gap-1">
+        <span class="material-symbols-outlined text-[14px]">person</span> {{ data.asignado }}
+      </span>
+    </div>
+  </div>
+
+  <div class="flex justify-center gap-2">
+    <app-button url="/detalles">Ver</app-button>
+    <app-button url="/asignar">Asignar</app-button>
+  </div>
+</article>

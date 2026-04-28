@@ -1,0 +1,26 @@
+<article
+  class="bg-surface-container-low rounded-xl p-3 border border-white/40 shadow-sm relative overflow-hidden w-full max-w-[280px] hover:border-primary/50 transition-all"
+>
+  <div class="flex justify-between items-center mb-2">
+    <div>
+      <span class="text-[8px] font-bold uppercase text-error bg-error/10 px-1.5 py-0.5 rounded">
+        {{ data.tipo }}
+      </span>
+      <h4 class="font-bold text-sm leading-tight mt-0.5">{{ data.titulo }}</h4>
+    </div>
+    <span class="text-[9px] text-on-surface-variant font-medium">{{ data.tiempo }}</span>
+  </div>
+
+  <div class="space-y-1 mb-3">
+    <div class="flex items-center gap-1.5 text-on-surface-variant">
+      <span class="material-symbols-outlined text-[12px] text-primary">person</span>
+      <span class="text-[10px]">{{ data.usuario }}</span>
+    </div>
+    <div class="flex items-center gap-1.5 text-on-surface-variant">
+      <span class="material-symbols-outlined text-[12px] text-primary">location_on</span>
+      <span class="text-[10px] truncate max-w-[180px]">{{ data.ubicacion }}</span>
+    </div>
+  </div>
+
+  <app-button class="w-full text-[10px] py-1">Detalles</app-button>
+</article>

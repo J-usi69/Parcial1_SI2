@@ -1,0 +1,87 @@
+<div class="min-h-screen bg-gray-950 text-white font-sans">
+  <main class="p-6 md:p-12 lg:p-24">
+    <div class="max-w-2xl mx-auto">
+      <header class="mb-10">
+        <h1 class="text-4xl font-bold mb-4 text-center">Crear Usuario</h1>
+        <p class="text-gray-400 text-center">
+          Establece tus credenciales administrativas para inicializar el entorno de Veltra.
+        </p>
+      </header>
+
+      <div class="glass-panel rounded-3xl p-8 shadow-2xl border border-white/5">
+        <form class="flex flex-col gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-2"
+                >CI (Identificación)</label
+              >
+              <input
+                class="w-full rounded-xl bg-gray-900/50 border border-white/10 px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all"
+                placeholder="000-0000000-0"
+                type="text"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-2"
+                >Fecha de Nacimiento</label
+              >
+              <input
+                class="w-full rounded-xl bg-gray-900/50 border border-white/10 px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all text-gray-400"
+                type="date"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-2"
+                >Nombre</label
+              >
+              <input
+                class="w-full rounded-xl bg-gray-900/50 border border-white/10 px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all"
+                placeholder="Nombre"
+                type="text"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-2"
+                >Apellido</label
+              >
+              <input
+                class="w-full rounded-xl bg-gray-900/50 border border-white/10 px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all"
+                placeholder="Apellido"
+                type="text"
+              />
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-2"
+              >Correo electrónico</label
+            >
+            <input
+              class="w-full rounded-xl bg-gray-900/50 border border-white/10 px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all"
+              placeholder="admin@veltra.network"
+              type="email"
+            />
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="text-xs font-semibold text-gray-400 uppercase tracking-widest px-2"
+              >Contraseña</label
+            >
+            <input
+              class="w-full rounded-xl bg-gray-900/50 border border-white/10 px-4 py-3 focus:outline-none focus:border-indigo-500 transition-all"
+              placeholder="••••••••"
+              type="password"
+            />
+          </div>
+
+          <div class="flex justify-end mt-4">
+            <app-button label="Siguiente" url="/create-company"></app-button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>

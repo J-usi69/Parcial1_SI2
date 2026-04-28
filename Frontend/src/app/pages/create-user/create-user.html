@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html class="dark" lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Veltra - Registro (Paso 1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      .glass-panel {
+        background-color: rgba(31, 41, 55, 0.4);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .input-focus-ring:focus-within {
+        outline: 2px solid #6366f1;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <div class="flex items-center justify-between mb-10 px-4">
+    <div
+      class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center font-bold shadow-lg shadow-indigo-500/30"
+    >
+      1
+    </div>
+    <div class="h-[2px] flex-1 bg-gray-800 mx-4"></div>
+    <div
+      class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center font-bold text-gray-500"
+    >
+      2
+    </div>
+    <div class="h-[2px] flex-1 bg-gray-800 mx-4"></div>
+    <div
+      class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center font-bold text-gray-500"
+    >
+      3
+    </div>
+  </div>
+  <app-new-user-form url="/create-company">Siguiente</app-new-user-form>
+</html>

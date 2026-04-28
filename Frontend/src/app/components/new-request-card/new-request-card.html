@@ -1,0 +1,41 @@
+<article
+  class="w-[320px] shrink-0 bg-surface-container/70 backdrop-blur-[25px] border-[0.5px] border-outline-variant/20 rounded-3xl p-5 shadow-sm relative overflow-hidden transition-all duration-300"
+>
+  <div class="flex items-start justify-between mb-4 relative z-10">
+    <div class="flex items-start">
+      <div
+        class="h-10 rounded-full bg-error-container flex items-center justify-center shrink-0"
+      ></div>
+      <div class="flex flex-col">
+        <h3 class="text-sm font-bold text-on-surface leading-tight truncate">{{ data.titulo }}</h3>
+        <p class="text-on-surface-variant text-[10px] mt-0.5">Hace {{ data.tiempo }}</p>
+      </div>
+    </div>
+
+    <span
+      class="bg-error text-on-error px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider shrink-0"
+    >
+      {{ data.severidad }}
+    </span>
+  </div>
+
+  <div class="grid grid-cols-2 gap-2 mb-4 relative z-10">
+    <div class="bg-surface-container-lowest/50 rounded-xl p-3" style="text-align: center">
+      <span class="text-on-surface-variant text-[9px] uppercase block">Vehículo</span>
+      <span class="text-on-surface font-bold text-xs block truncate">{{ data.vehiculo }}</span>
+      <span class="text-primary font-mono text-[10px]">{{ data.placa }}</span>
+    </div>
+    <div class="bg-surface-container-lowest/50 rounded-xl p-3" style="text-align: center">
+      <span class="text-on-surface-variant text-[9px] uppercase block">Ubicación</span>
+      <span class="text-on-surface font-bold text-xs block truncate">{{ data.ubicacion }}</span>
+      <span class="text-primary font-mono text-[10px]">
+        {{ data.distancia }}
+      </span>
+    </div>
+  </div>
+
+  <div class="flex justify-center gap-3">
+    <app-button>Aceptar</app-button>
+    <app-button>Rechazar</app-button>
+  </div>
+</article>

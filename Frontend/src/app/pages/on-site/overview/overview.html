@@ -1,0 +1,11 @@
+<div class="flex flex-col lg:flex-row gap-8 w-full p-4">
+  <div class="flex-1 w-full min-h-[500px]">
+    <app-map></app-map>
+  </div>
+
+  <div class="flex flex-col gap-4 w-full lg:w-[450px] shrink-0">
+    @for (item of miSolicitud; track item.titulo) {
+      <app-request-card [data]="item"></app-request-card>
+    }
+  </div>
+</div>

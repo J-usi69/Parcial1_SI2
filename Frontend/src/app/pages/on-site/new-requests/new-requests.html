@@ -1,0 +1,20 @@
+<div
+  class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 gap-6 relative z-10"
+>
+  <div>
+    <h2
+      class="font-headline text-[3.5rem] leading-tight font-extrabold text-on-surface tracking-[-0.02em]"
+    >
+      Nuevas Solicitudes
+    </h2>
+    <p class="font-body text-on-surface-variant mt-2 text-lg">
+      Gestión centralizada de solicitudes.
+    </p>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-12 p-6">
+  @for (request of requests; track request.titulo) {
+    <app-new-request-card [data]="request"></app-new-request-card>
+  }
+</div>

@@ -1,0 +1,39 @@
+<article class="w-full max-w-[280px]">
+  <div
+    class="glass-panel rounded-[2rem] p-5 flex flex-col items-center text-center relative hover:bg-white/10 transition-colors duration-300 group"
+  >
+    @if (data.isOnline) {
+      <div
+        class="absolute top-3 right-3 flex items-center gap-1 bg-lima/10 border border-lima/30 px-2 py-0.5 rounded-full"
+      >
+        <div class="w-1.5 h-1.5 rounded-full bg-lima shadow-[0_0_8px_#B8FB3C] animate-pulse"></div>
+        <span class="text-[9px] font-semibold text-lima uppercase">Online</span>
+      </div>
+    } @else {
+      <div
+        class="absolute top-3 right-3 flex items-center gap-1 bg-slate-800/50 border border-slate-700 px-2 py-0.5 rounded-full"
+      >
+        <div class="w-1.5 h-1.5 rounded-full bg-slate-500"></div>
+        <span class="text-[9px] font-semibold text-slate-400 uppercase">Offline</span>
+      </div>
+    }
+
+    <img
+      [src]="data.fotoUrl"
+      [alt]="data.nombre"
+      [class.grayscale]="!data.isOnline"
+      class="w-20 h-20 rounded-full object-cover mb-3 border-2 border-lima p-1 mt-2 shadow-[0_0_20px_rgba(184,251,60,0.2)] transition-all"
+    />
+
+    <h4 class="text-base font-bold text-white mb-0.5">{{ data.nombre }}</h4>
+    <p class="text-xs text-slate-400 font-medium mb-4">{{ data.especialidad }}</p>
+
+    <button
+      [class.opacity-50]="!data.isOnline"
+      class="w-full py-2 rounded-full border-[0.5px] border-white/20 text-white font-medium text-xs hover:bg-white/10 transition-colors flex items-center justify-center gap-1.5"
+    >
+      <span class="material-symbols-outlined text-[14px]">visibility</span>
+      {{ data.isOnline ? 'Ver Detalles' : 'No disponible' }}
+    </button>
+  </div>
+</article>

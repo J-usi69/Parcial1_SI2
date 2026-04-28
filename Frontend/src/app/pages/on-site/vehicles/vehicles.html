@@ -1,0 +1,39 @@
+<div
+  class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 gap-6 relative z-10"
+>
+  <div>
+    <h2
+      class="font-headline text-[3.5rem] leading-tight font-extrabold text-on-surface tracking-[-0.02em]"
+    >
+      Administración de Vehículos
+    </h2>
+    <p class="font-body text-on-surface-variant mt-2 text-lg">Gestión centralizada de vehículos.</p>
+  </div>
+  <app-button url="/new-vehicle-form"> + Nuevo Vehiculo </app-button>
+</div>
+
+<div class="grid gap-4" style="grid-template-columns: repeat(3, minmax(280px, 1fr))">
+  <div class="glass-panel rounded-[2.5rem] p-8 ambient-shadow relative overflow-hidden group">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="font-headline font-semibold text-on-surface-variant">Total Unidades</span>
+    </div>
+    <div class="text-2xl font-headline font-black text-white tracking-tighter">42</div>
+  </div>
+  <div class="glass-panel rounded-[2.5rem] p-8 ambient-shadow relative overflow-hidden group">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="font-headline font-semibold text-on-surface-variant">Unidades en Uso</span>
+    </div>
+    <div class="text-2xl font-headline font-black text-white tracking-tighter">30</div>
+  </div>
+  <div class="glass-panel rounded-[2.5rem] p-8 ambient-shadow relative overflow-hidden group">
+    <div class="flex items-center gap-4 mb-4">
+      <span class="font-headline font-semibold text-on-surface-variant">Unidades Libres</span>
+    </div>
+    <div class="text-2xl font-headline font-black text-white tracking-tighter">12</div>
+  </div>
+</div>
+<div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))">
+  @for (vehiculo of listaVehiculos; track vehiculo.placa) {
+    <app-vehicle-card [data]="vehiculo"></app-vehicle-card>
+  }
+</div>

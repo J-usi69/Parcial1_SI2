@@ -1,0 +1,42 @@
+<div class="flex min-h-screen bg-gray-950 text-white">
+  <aside class="hidden md:flex w-80 border-r border-white/10 p-10 flex-col gap-12">
+    <div>
+      <h2 class="text-3xl font-bold mb-2">Veltra</h2>
+      <p class="text-gray-400 text-base">Registro (Paso 1 de 3)</p>
+    </div>
+
+    <nav class="flex flex-col gap-3">
+      <a
+        routerLink="/create-user"
+        routerLinkActive="bg-indigo-600 font-medium text-white"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all text-gray-500 hover:bg-white/5"
+      >
+        <span class="material-symbols-outlined text-2xl">person</span>
+        <span class="text-lg">Usuario</span>
+      </a>
+
+      <a
+        routerLink="/create-company"
+        routerLinkActive="bg-indigo-600 font-medium text-white"
+        class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all text-gray-500 hover:bg-white/5"
+      >
+        <span class="material-symbols-outlined text-2xl">business</span>
+        <span class="text-lg">Compañía</span>
+      </a>
+
+      <a
+        routerLink="/create-branch"
+        routerLinkActive="bg-indigo-600 font-medium text-white"
+        class="flex items-center gap-4 px-5 py-4 rounded-2xl transition-all text-gray-500 hover:bg-white/5"
+      >
+        <span class="material-symbols-outlined text-2xl">account_tree</span>
+        <span class="text-lg">Sucursales</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="flex-1 p-12">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,11 @@
+.map-container {
+  width: 50%; /* Mitad del ancho disponible */
+  height: 90vh; /* 3/4 de la altura de la ventana (vh = viewport height) */
+}
+
+/* Asegura que el componente hijo expanda al contenedor */
+app-map {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
